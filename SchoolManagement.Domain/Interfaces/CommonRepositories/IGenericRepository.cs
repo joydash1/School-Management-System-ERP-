@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SchoolManagement.Domain.Interfaces
+namespace SchoolManagement.Domain.Interfaces.CommonRepositories
 {
     public interface IGenericRepository<T> where T : class
     {

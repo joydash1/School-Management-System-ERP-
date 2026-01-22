@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace SchoolManagement.Domain.Enums
 {
-    public enum ApplicationUserRole
+    public enum UserRole
     {
-        Admin = 1,
-        Teacher = 2,
-        Student = 3,
-        Parent = 4,
-        Staff = 5
+        SuperAdmin = 1,
+        Admin = 2,
+        Executives = 3
     }
 }

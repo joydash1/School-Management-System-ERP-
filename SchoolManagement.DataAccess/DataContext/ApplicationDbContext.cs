@@ -14,7 +14,7 @@ namespace SchoolManagement.DataAccess.DataContext
         {
         }
 
-        public DbSet<ApplicationUsers> ApplicationUsers { get; set; }
+        public DbSet<Users> Users { get; set; }
         public DbSet<Students> Students { get; set; }
     }
 }

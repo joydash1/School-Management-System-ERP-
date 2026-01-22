@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SchoolManagement.DataAccess.DataContext;
-using SchoolManagement.Domain.Interfaces;
+using SchoolManagement.Domain.Interfaces.CommonRepositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
