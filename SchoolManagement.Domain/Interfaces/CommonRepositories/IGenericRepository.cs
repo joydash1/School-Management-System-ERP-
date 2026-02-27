@@ -49,5 +49,25 @@ namespace SchoolManagement.Domain.Interfaces.CommonRepositories
         void Remove(T entity);
 
         void RemoveRange(IEnumerable<T> entities);
+
+        // Count
+        Task<int> CountAsync(Expression<Func<T, bool>>? predicate = null);
+
+        // Check
+        Task<bool> ExistsAsync(Expression<Func<T, bool>> predicate);
+
+        // Include (for eager loading)
+        IQueryable<T> Include(params Expression<Func<T, object>>[] includes);
+
+        // Get
+        Task<T?> GetByIdAsync(int id);
+
+        Task<T?> GetByIdAsync(string id);
+
+        Task<IEnumerable<T>> GetAllAsync();
+
+        Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate);
+
+        Task<T?> FindSingleAsync(Expression<Func<T, bool>> predicate);
     }
 }
