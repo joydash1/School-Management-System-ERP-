@@ -4,8 +4,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.IdentityModel.Tokens;
 using SchoolManagement.DataAccess.DataContext;
+using SchoolManagement.DataAccess.Repositories;
 using SchoolManagement.DataAccess.UnitOfWork;
 using SchoolManagement.Domain.Entities.Authentication;
+using SchoolManagement.Domain.Interfaces.AuthenticationAndAuthorization;
 using SchoolManagement.Domain.Interfaces.CommonRepositories;
 using SchoolManagement.Infrastructure.Services.CommonServices;
 using SchoolManagement.Infrastructure.Services.Dapper;
@@ -59,6 +61,7 @@ builder.Services.AddAuthentication()
         options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"] ?? "";
     });
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IAuthenticationRepository, AuthenticationRepository>();
 builder.Services.AddScoped<IDapperService, DappeService>();
 builder.Services.AddAuthorization();
 var app = builder.Build();

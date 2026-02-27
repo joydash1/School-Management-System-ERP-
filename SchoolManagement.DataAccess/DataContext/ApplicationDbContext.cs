@@ -17,6 +17,8 @@ namespace SchoolManagement.DataAccess.DataContext
         {
         }
 
+        public DbSet<ApplicationUsers> ApplicationUsers { get; set; }
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<Student> Students { get; set; }
 

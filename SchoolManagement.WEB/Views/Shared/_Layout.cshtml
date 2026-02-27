@@ -1,66 +1,69 @@
-﻿<!DOCTYPE html>
+﻿@{
+	var currentController = ViewContext.ActionDescriptor.RouteValues["Controller"];
+	var currentAction = ViewContext.ActionDescriptor.RouteValues["Action"];
+}
+
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>School Management System</title>
-    <!-- Bootstrap CSS -->
-    <link href="~/css/bootstrap.css" rel="stylesheet" />
-    <!-- Font Awesome CSS -->
-    <link href="~/css/fontawesome.min.css" rel="stylesheet" />
-    <!-- Sweet Alert CSS -->
-    <link href="~/css/sweetalert2.min.css" rel="stylesheet" />
-    <!--CSS -->
-    <link href="~/css/style.css" rel="stylesheet" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>@ViewData["Title"] - M Zubair Securities Ltd.</title>
+
+	<meta name="title" content="M Zubair Securities Ltd.">
+	<meta name="description" content="">
+
+	<!-- opengraph -->
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="">
+	<meta property="og:title" content="">
+	<meta property="og:description" content="">
+	<meta property="og:image" content="">
+	@RenderSection("Styles", required: false)
 </head>
 
+
+
 <body>
-    <div class="sidebar" id="sidebar">
-        <div class="logo">
-            <i class="fa-solid fa-school"></i> <span>Admin</span>
-        </div>
+	<!-- ========== Start preloader ========== -->
+	<section class="preloader" style="display: none;">
+		<img src='~/images/pre-loader.gif' class=''>
+	</section>
+	<!-- ========== End preloader ========== -->
+	<!--============================
+	=            header            =
+	=============================-->
+	<header class="sticky-top">
+		
+	</header>
 
-        <a href="#"><i class="fa-solid fa-gauge"></i> <span>Dashboard</span></a>
-        <a asp-action="Registration" asp-controller="ApplicationUsers"><i class="fa-solid fa-user-graduate"></i> <span>Students</span></a>
-        <a href="#"><i class="fa-solid fa-chalkboard-teacher"></i> <span>Teachers</span></a>
-        <a href="#"><i class="fa-solid fa-book"></i> <span>Courses</span></a>
-        <a href="#"><i class="fa-solid fa-file-invoice-dollar"></i> <span>Fees</span></a>
-        <a href="#"><i class="fa-solid fa-gear"></i> <span>Settings</span></a>
-    </div>
-    <!-- Content Area -->
-    <div class="content">
 
-        <!-- Top Navbar -->
-        <div class="topbar d-flex justify-content-between align-items-center">
-            <div>
-                <i class="fa-solid fa-bars toggle-btn" onclick="toggleSidebar()"></i>
-            </div>
+	<!-- ----------------------------------------- -->
+	<!--                  Content                  -->
+	<!-- ----------------------------------------- -->
 
-            <div class="d-flex align-items-center gap-3">
-                <i class="fa-solid fa-bell"></i>
-                <div class="dropdown">
-                    <a class="dropdown-toggle text-dark text-decoration-none" href="#" data-bs-toggle="dropdown">
-                        <i class="fa-solid fa-user-circle"></i> Admin
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
-                        <li><a class="dropdown-item" href="#">Logout</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <!-- Dashboard Content -->
-        <div class="mt-4">
-            @RenderBody()
-        </div>
 
-    </div>
-    <script src="~/js/jquery.min.js"></script>
-    <script src="~/js/bootstrap.bundle.js"></script>
-    <script src="~/js/fontawesome.min.js"></script>
-    <script src="~/js/sweetalert2.all.min.js"></script>
-    <script src="~/js/main.js"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+	<div class="container-fluid bd-layout">
+		<section class="bd-main">
+			<main>
+				@RenderBody()
+			</main>
+		</section>
+	</div>
+
+	<!--============================
+	=            footer            =
+	=============================-->
+	<footer>
+		
+	</footer>
+
+	<!-- scripts -->
+
+	<script type="text/javascript">
+		
+	</script>
+	@RenderSection("Scripts", required: false)
 </body>
 </html>
