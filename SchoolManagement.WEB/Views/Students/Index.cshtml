@@ -1,0 +1,244 @@
+﻿@using SchoolManagement.Domain.Enums
+@{
+    ViewData["Title"] = "Student Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">
+                        <i class="fa-solid fa-user-graduate me-2"></i>
+                        Student Details
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="StudentCode" class="form-label fw-semibold">Student Code</label>
+                            <input id="StudentCode" class="form-control" placeholder="Enter student code" />
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="FirstName" class="form-label fw-semibold">First Name</label>
+                            <input id="FirstName" class="form-control" placeholder="Enter first name" />
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="LastName" class="form-label fw-semibold">Last Name</label>
+                            <input id="LastName" class="form-control" placeholder="Enter last name" />
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="GuardianName" class="form-label fw-semibold">Guardian Name</label>
+                            <input id="GuardianName" class="form-control" placeholder="Enter guardian name" />
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="GuardianPhone" class="form-label fw-semibold">Guardian Phone</label>
+                            <input id="GuardianPhone" class="form-control" placeholder="+880..." />
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="Email" class="form-label fw-semibold">Email</label>
+                            <input id="Email" class="form-control" placeholder="example@mail.com" />
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="PhoneNumber" class="form-label fw-semibold">Phone Number</label>
+                            <input id="PhoneNumber" class="form-control" placeholder="+880..." />
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="DateOfBirth" class="form-label fw-semibold">Date of Birth</label>
+                            <input id="DateOfBirth" class="form-control" type="date" />
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="Gender" class="form-label fw-semibold">Gender</label>
+                            <select id="Gender" class="form-select">
+                                <option value="0">Select Gender</option>
+                                @foreach (var gender in Enum.GetValues(typeof(Gender)))
+                                {
+                                    <option value="@gender">@gender</option>
+                                }
+                            </select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="Class" class="form-label fw-semibold">Class</label>
+                            <select id="Class" class="form-select">
+                                <option value="0">Select Class</option>
+                                @foreach (var cls in Enum.GetValues(typeof(StudentClass)))
+                                {
+                                    <option value="@cls">@cls</option>
+                                }
+                            </select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="AdmissionDate" class="form-label fw-semibold">Admission Date</label>
+                            <input id="AdmissionDate" class="form-control" type="date" />
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="Status" class="form-label fw-semibold">Status</label>
+                            <select id="Status" class="form-select">
+                                <option value="0">Select Status</option>
+                                @foreach (var s in Enum.GetValues(typeof(StudentStatus)))
+                                {
+                                    <option value="@s">@s</option>
+                                }
+                            </select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="Address" class="form-label fw-semibold">Address</label>
+                            <input id="Address" class="form-control" placeholder="Enter address" />
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="City" class="form-label fw-semibold">City</label>
+                            <input id="City" class="form-control" placeholder="Enter city" />
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="Country" class="form-label fw-semibold">Country</label>
+                            <select id="Country" class="form-select">
+                                <option value="0">Select Country</option>
+                                @foreach (var c in Enum.GetValues(typeof(Country)))
+                                {
+                                    <option value="@c">@c</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 text-end">
+                        <button type="button" class="btn btn-primary" id="btnSave" data-id="0">
+                            <i class="fa-solid fa-floppy-disk me-1"></i> Save Student
+                        </button>
+                        <a class="btn btn-secondary ms-2">
+                            <i class="fa-solid fa-arrow-left me-1"></i> Back
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(document).on('click',"#btnSave", function (e) {
+                e.preventDefault();
+                var id = parseInt($(this).attr('data-id'))
+                var StudentCode = $('#StudentCode').val()?.trim();
+                var FirstName = $('#FirstName').val()?.trim();
+                var LastName = $('#LastName').val()?.trim();
+                var FullName = (FirstName +' ' + LastName).trim();
+                var Email = $('#Email').val()?.trim();
+                var PhoneNumber = $('#PhoneNumber').val()?.trim();
+                var DateOfBirth = $('#DateOfBirth').val();
+                var Gender = $('#Gender').val();
+                var ClassVal = $('#Class').val();
+                var AdmissionDate = $('#AdmissionDate').val();
+                var Status = $('#Status').val();
+                var Address = $('#Address').val()?.trim();
+                var City = $('#City').val()?.trim();
+                var Country = $('#Country').val();
+
+
+                var errors = [];
+
+
+                if (!StudentCode) errors.push("Student Code is required");
+                if (!FirstName) errors.push("First Name is required");
+                if (!Email) errors.push("Email is required");
+                if (!PhoneNumber) errors.push("Phone Number is required");
+                if (!DateOfBirth) errors.push("Date of Birth is required");
+                if (!Gender || Gender == "0") errors.push("Gender is required");
+                if (!ClassVal || ClassVal == "0") errors.push("Class is required");
+                if (!AdmissionDate) errors.push("Admission Date is required");
+                if (!Status || Status == "0") errors.push("Status is required");
+                if (!Address) errors.push("Address is required");
+                if (!City) errors.push("City is required");
+                if (!Country || Country == "0") errors.push("Country is required");
+
+
+                if (errors.length > 0) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Validation Error',
+                        html: errors.join("<br/>"),
+                        confirmButtonColor: '#2563eb'
+                    });
+                    return;
+                }
+
+                var formData = new FormData();
+                formData.append('Id',id);
+                formData.append('StudentCode', StudentCode);
+                formData.append('FirstName', FirstName);
+                formData.append('LastName', LastName);
+                formData.append('FullName', FullName);
+                formData.append('GuardianName', $('#GuardianName').val()?.trim());
+                formData.append('GuardianPhone', $('#GuardianPhone').val()?.trim());
+                formData.append('Email', Email);
+                formData.append('PhoneNumber', PhoneNumber);
+                formData.append('DateOfBirth', DateOfBirth);
+                formData.append('Gender', Gender);
+                formData.append('Class', ClassVal);
+                formData.append('AdmissionDate', AdmissionDate);
+                formData.append('Status', Status);
+                formData.append('Address', Address);
+                formData.append('City', City);
+                formData.append('Country', Country);
+
+                $.ajax({
+                    url: '@Url.Action("SaveUpdateStudent", "Students")',
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (res) {
+                          console.log(res);
+                            if (res.isSuccess) {
+                                window.showSuccess(res.message,'Saved!',2000);
+                            } else {
+                                if (res.errors && res.errors.length > 0) {
+                                    window.showErrors(res.errors, 'Validation Failed');
+                                } else {
+                                    window.showError(res.message || 'Something went wrong');
+                                }
+                            }
+                        },
+                    error: function (xhr) {
+                        if (xhr.status === 400) {
+                                try {
+                                    var response = JSON.parse(xhr.responseText);
+
+                                    // Handle your exact response format
+                                    // {"isSuccess":false,"message":"","errors":["Email: Email already exists","StudentCode: Student code already exists"],"statusCode":400}
+
+                                    if (response.errors && response.errors.length > 0) {
+                                        window.showErrors(response.errors, 'Validation Failed');
+                                    } else if (response.message) {
+                                        window.showError(response.message);
+                                    } else {
+                                        window.showError('Validation failed. Please check your input.');
+                                    }
+                                } catch (e) {
+                                    window.showError(xhr.responseText || 'Bad request');
+                                }
+                        } else {
+                            window.showError('An error occurred while saving');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+}

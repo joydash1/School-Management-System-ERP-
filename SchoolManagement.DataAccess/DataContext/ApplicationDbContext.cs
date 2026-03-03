@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using SchoolManagement.Domain.Entities;
 using SchoolManagement.Domain.Entities.Authentication;
 using SchoolManagement.Domain.Entities.AuthenticationAndAuthorization;
+using SchoolManagement.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,64 +52,32 @@ namespace SchoolManagement.DataAccess.DataContext
 
                 entity.Property(e => e.RefreshToken)
                     .HasMaxLength(500);
-
-                // Ignore FullName as it's computed
-                entity.Ignore(e => e.FullName);
-
-                // Relationships
-                entity.HasOne(e => e.Student)
-                    .WithMany(s => s.Users)
-                    .HasForeignKey(e => e.StudentId)
-                    .OnDelete(DeleteBehavior.SetNull);
-
-                entity.HasOne(e => e.Teacher)
-                    .WithMany(t => t.Users)
-                    .HasForeignKey(e => e.TeacherId)
-                    .OnDelete(DeleteBehavior.SetNull);
             });
-
-            // Configure Teacher
-            modelBuilder.Entity<Teacher>(entity =>
-            {
-                entity.HasKey(e => e.Id);
-
-                entity.Property(e => e.EmployeeNumber)
-                    .IsRequired()
-                    .HasMaxLength(50);
-
-                entity.Property(e => e.Department)
-                    .HasMaxLength(100);
-
-                entity.Property(e => e.Qualification)
-                    .HasMaxLength(200);
-
-                entity.Property(e => e.JoinDate)
-                    .IsRequired();
-
-                entity.Property(e => e.CreatedAt)
-                    .HasDefaultValueSql("GETUTCDATE()");
-            });
-
-            // Configure Student
+            // Student configuration
             modelBuilder.Entity<Student>(entity =>
             {
                 entity.HasKey(e => e.Id);
+                entity.HasIndex(e => e.StudentCode)
+                    .IsUnique()
+                    .HasDatabaseName("IX_Students_StudentCode");
+                entity.HasIndex(e => e.Email)
+                    .IsUnique()
+                    .HasDatabaseName("IX_Students_Email");
 
-                entity.Property(e => e.StudentNumber)
-                    .IsRequired()
-                    .HasMaxLength(50);
-
-                entity.Property(e => e.Grade)
-                    .HasMaxLength(20);
-
-                entity.Property(e => e.Class)
-                    .HasMaxLength(20);
-
-                entity.Property(e => e.EnrollmentDate)
-                    .IsRequired();
-
+                entity.HasIndex(e => e.Status)
+                    .HasDatabaseName("IX_Students_Status");
+                entity.HasIndex(e => e.Class)
+                    .HasDatabaseName("IX_Students_Class");
+                entity.HasIndex(e => e.City)
+                    .HasDatabaseName("IX_Students_City");
+                entity.HasIndex(e => e.Country)
+                    .HasDatabaseName("IX_Students_Country");
+                entity.Property(e => e.Status)
+                    .HasDefaultValue(StudentStatus.Active);
                 entity.Property(e => e.CreatedAt)
                     .HasDefaultValueSql("GETUTCDATE()");
+                entity.Property(e => e.IsActive)
+                    .HasDefaultValue(true);
             });
         }
     }

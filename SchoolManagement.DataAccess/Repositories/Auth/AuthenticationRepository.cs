@@ -16,7 +16,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SchoolManagement.DataAccess.Repositories
+namespace SchoolManagement.DataAccess.Repositories.Auth
 {
     public class AuthenticationRepository : IAuthenticationRepository
     {

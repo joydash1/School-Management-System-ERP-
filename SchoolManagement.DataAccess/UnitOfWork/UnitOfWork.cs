@@ -1,10 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.Extensions.Logging;
 using SchoolManagement.DataAccess.DataContext;
 using SchoolManagement.DataAccess.Repositories;
+using SchoolManagement.DataAccess.Repositories.Auth;
+using SchoolManagement.Domain.Interfaces;
 using SchoolManagement.Domain.Interfaces.AuthenticationAndAuthorization;
 using SchoolManagement.Domain.Interfaces.CommonRepositories;
-using SchoolManagement.Infrastructure.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +20,7 @@ namespace SchoolManagement.DataAccess.UnitOfWork
         private readonly ApplicationDbContext _dbContext;
         private readonly Dictionary<Type, object> _repositories;
         private IDbContextTransaction _transaction = null;
+        private readonly ILoggerFactory _loggerFactory;
 
         private bool _disposed;
 
@@ -28,10 +31,12 @@ namespace SchoolManagement.DataAccess.UnitOfWork
 
         private IRoleRepository? _roleRepository;
         private IRefreshTokenRepository? _refreshTokenRepository;
+        private IStudentRepository? _studentRepository;
 
-        public UnitOfWork(ApplicationDbContext dbContext)
+        public UnitOfWork(ApplicationDbContext dbContext, ILoggerFactory loggerFactory = null)
         {
             _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
+            _loggerFactory = loggerFactory;
             _repositories = new Dictionary<Type, object>();
         }
 
@@ -42,7 +47,7 @@ namespace SchoolManagement.DataAccess.UnitOfWork
 
             if (!_repositories.ContainsKey(type))
             {
-                var repository = new GenericRepository<TEntity>(_dbContext);
+                var repository = new GenericRepository<TEntity>(_dbContext, _loggerFactory);
                 _repositories.Add(type, repository);
             }
 
@@ -58,6 +63,10 @@ namespace SchoolManagement.DataAccess.UnitOfWork
 
         public IRefreshTokenRepository RefreshTokens =>
             _refreshTokenRepository ??= new RefreshTokenRepository(_dbContext);
+
+        // Syudent Repository
+        public IStudentRepository StudentRepository =>
+            _studentRepository ??= new StudentRepository(_dbContext, _loggerFactory);
 
         // Transaction management
         public async Task BeginTransactionAsync(CancellationToken cancellationToken = default)

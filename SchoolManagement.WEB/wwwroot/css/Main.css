@@ -1,0 +1,285 @@
+﻿body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f5f7fb;
+}
+
+.navbar {
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.85);
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    color: #111827 !important;
+}
+
+.nav-link {
+    color: #4b5563 !important;
+    font-weight: 500;
+    margin-left: 10px;
+    transition: 0.3s;
+}
+
+    .nav-link:hover,
+    .nav-link.active {
+        color: #2563eb !important;
+    }
+
+.main-content {
+    padding: 40px 0;
+}
+
+footer {
+    background: #111827;
+    color: #9ca3af;
+    font-size: 14px;
+}
+
+    footer strong {
+        color: white;
+    }
+
+/* Select2 Global Design */
+.select2-container .select2-selection--single {
+    height: 46px; /* match form-control height */
+    padding: 0.375rem 0.75rem;
+    border: 1px solid #d1d5db; /* gray-300 like bootstrap */
+    border-radius: 0.375rem; /* rounded-md */
+    background-color: #ffffff;
+    color: #111827; /* text color */
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem; /* small base size */
+}
+
+.select2-container--bootstrap-5 .select2-selection--single .select2-selection__arrow {
+    height: 100%;
+    right: 0.5rem;
+}
+
+.select2-container--bootstrap-5 .select2-selection--single .select2-selection__rendered {
+    line-height: 1.75; /* vertical alignment */
+}
+
+.select2-container--bootstrap-5.select2-container--open .select2-selection--single {
+    border-color: #2563eb; /* primary blue on open */
+    box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.25);
+}
+
+.select2-container--bootstrap-5 .select2-selection--single:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.25);
+}
+
+/* Placeholder style */
+.select2-container--bootstrap-5 .select2-selection__placeholder {
+    color: #6b7280; /* gray-500 */
+}
+
+/* Dropdown items hover */
+.select2-container--bootstrap-5 .select2-results__option--highlighted[aria-selected] {
+    background-color: #2563eb;
+    color: white;
+}
+
+/* ==================== CUSTOM SWEETALERT2 STYLES ==================== */
+
+/* Success Popup - Light Green Hover Effect */
+.swal2-popup.swal2-icon-success {
+    border: 2px solid #10b981;
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2);
+    transition: all 0.3s ease;
+}
+
+    .swal2-popup.swal2-icon-success:hover {
+        border-color: #059669;
+        box-shadow: 0 0 0 8px rgba(16, 185, 129, 0.3);
+        transform: translateY(-2px);
+    }
+
+    .swal2-popup.swal2-icon-success .swal2-title {
+        color: #065f46;
+        font-weight: 600;
+    }
+
+    .swal2-popup.swal2-icon-success .swal2-content {
+        color: #047857;
+    }
+
+    .swal2-popup.swal2-icon-success .swal2-confirm {
+        background-color: #10b981 !important;
+        box-shadow: 0 2px 5px rgba(16, 185, 129, 0.3);
+        transition: all 0.3s ease;
+    }
+
+        .swal2-popup.swal2-icon-success .swal2-confirm:hover {
+            background-color: #059669 !important;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(16, 185, 129, 0.4);
+        }
+
+    .swal2-popup.swal2-icon-success .swal2-timer-progress-bar {
+        background: #10b981;
+    }
+
+/* Error Popup - Light Red Hover Effect */
+.swal2-popup.swal2-icon-error {
+    border: 2px solid #dc2626;
+    box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.2);
+    transition: all 0.3s ease;
+}
+
+    .swal2-popup.swal2-icon-error:hover {
+        border-color: #b91c1c;
+        box-shadow: 0 0 0 8px rgba(220, 38, 38, 0.3);
+        transform: translateY(-2px);
+    }
+
+    .swal2-popup.swal2-icon-error .swal2-title {
+        color: #991b1b;
+        font-weight: 600;
+    }
+
+    .swal2-popup.swal2-icon-error .swal2-content {
+        color: #b91c1c;
+    }
+
+    .swal2-popup.swal2-icon-error .swal2-confirm {
+        background-color: #dc2626 !important;
+        box-shadow: 0 2px 5px rgba(220, 38, 38, 0.3);
+        transition: all 0.3s ease;
+    }
+
+        .swal2-popup.swal2-icon-error .swal2-confirm:hover {
+            background-color: #b91c1c !important;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(220, 38, 38, 0.4);
+        }
+
+    .swal2-popup.swal2-icon-error .swal2-timer-progress-bar {
+        background: #dc2626;
+    }
+
+/* Warning Popup - Light Yellow Hover Effect */
+.swal2-popup.swal2-icon-warning {
+    border: 2px solid #f59e0b;
+    box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.2);
+    transition: all 0.3s ease;
+}
+
+    .swal2-popup.swal2-icon-warning:hover {
+        border-color: #d97706;
+        box-shadow: 0 0 0 8px rgba(245, 158, 11, 0.3);
+        transform: translateY(-2px);
+    }
+
+    .swal2-popup.swal2-icon-warning .swal2-title {
+        color: #92400e;
+        font-weight: 600;
+    }
+
+    .swal2-popup.swal2-icon-warning .swal2-content {
+        color: #b45309;
+    }
+
+    .swal2-popup.swal2-icon-warning .swal2-confirm {
+        background-color: #f59e0b !important;
+        box-shadow: 0 2px 5px rgba(245, 158, 11, 0.3);
+        transition: all 0.3s ease;
+    }
+
+        .swal2-popup.swal2-icon-warning .swal2-confirm:hover {
+            background-color: #d97706 !important;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(245, 158, 11, 0.4);
+        }
+
+    .swal2-popup.swal2-icon-warning .swal2-timer-progress-bar {
+        background: #f59e0b;
+    }
+
+/* Info Popup - Light Blue Hover Effect */
+.swal2-popup.swal2-icon-info {
+    border: 2px solid #2563eb;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.2);
+    transition: all 0.3s ease;
+}
+
+    .swal2-popup.swal2-icon-info:hover {
+        border-color: #1e40af;
+        box-shadow: 0 0 0 8px rgba(37, 99, 235, 0.3);
+        transform: translateY(-2px);
+    }
+
+    .swal2-popup.swal2-icon-info .swal2-title {
+        color: #1e3a8a;
+        font-weight: 600;
+    }
+
+    .swal2-popup.swal2-icon-info .swal2-content {
+        color: #2563eb;
+    }
+
+    .swal2-popup.swal2-icon-info .swal2-confirm {
+        background-color: #2563eb !important;
+        box-shadow: 0 2px 5px rgba(37, 99, 235, 0.3);
+    }
+
+        .swal2-popup.swal2-icon-info .swal2-confirm:hover {
+            background-color: #1e40af !important;
+        }
+
+/* Error message list styling */
+.error-list {
+    text-align: left;
+    max-height: 250px;
+    overflow-y: auto;
+    padding: 5px 10px;
+    background: #fef2f2;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.error-item {
+    padding: 8px 12px;
+    margin: 5px 0;
+    background: white;
+    border-left: 4px solid #dc2626;
+    border-radius: 4px;
+    color: #4b5563;
+    font-size: 0.9rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+    .error-item i {
+        color: #dc2626;
+        margin-right: 8px;
+    }
+
+/* Success message styling */
+.success-icon {
+    color: #10b981;
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+/* Loading spinner */
+.custom-loader {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #2563eb;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

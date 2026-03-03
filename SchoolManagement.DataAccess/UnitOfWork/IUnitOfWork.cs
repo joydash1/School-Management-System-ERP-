@@ -1,4 +1,5 @@
-﻿using SchoolManagement.Domain.Interfaces.AuthenticationAndAuthorization;
+﻿using SchoolManagement.Domain.Interfaces;
+using SchoolManagement.Domain.Interfaces.AuthenticationAndAuthorization;
 using SchoolManagement.Domain.Interfaces.CommonRepositories;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ namespace SchoolManagement.DataAccess.UnitOfWork
 
         IRoleRepository Roles { get; }
         IRefreshTokenRepository RefreshTokens { get; }
+        IStudentRepository StudentRepository { get; }
 
         // Transaction management
         Task BeginTransactionAsync(CancellationToken cancellationToken = default);

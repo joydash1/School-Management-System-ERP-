@@ -1,69 +1,97 @@
 ﻿@{
-	var currentController = ViewContext.ActionDescriptor.RouteValues["Controller"];
-	var currentAction = ViewContext.ActionDescriptor.RouteValues["Action"];
+    var currentController = ViewContext.ActionDescriptor.RouteValues["Controller"];
 }
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>@ViewData["Title"] - M Zubair Securities Ltd.</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - SMS</title>
 
-	<meta name="title" content="M Zubair Securities Ltd.">
-	<meta name="description" content="">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-	<!-- opengraph -->
-	<meta property="og:type" content="website">
-	<meta property="og:url" content="">
-	<meta property="og:title" content="">
-	<meta property="og:description" content="">
-	<meta property="og:image" content="">
-	@RenderSection("Styles", required: false)
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+    <!-- Select2 -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" rel="stylesheet">
+    <link href="~/css/main.css" rel="stylesheet" />
+
+    @RenderSection("Styles", required: false)
 </head>
 
+<body class="d-flex flex-column min-vh-100">
 
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fa-solid fa-graduation-cap me-2 text-primary"></i>
+                SchoolMS
+            </a>
 
-<body>
-	<!-- ========== Start preloader ========== -->
-	<section class="preloader" style="display: none;">
-		<img src='~/images/pre-loader.gif' class=''>
-	</section>
-	<!-- ========== End preloader ========== -->
-	<!--============================
-	=            header            =
-	=============================-->
-	<header class="sticky-top">
-		
-	</header>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
+            <div class="collapse navbar-collapse" id="navbarMain">
+                <ul class="navbar-nav ms-auto">
 
-	<!-- ----------------------------------------- -->
-	<!--                  Content                  -->
-	<!-- ----------------------------------------- -->
+                    <li class="nav-item">
+                        <a class="nav-link @(currentController == "Home" ? "active" : "")" href="/">
+                            Dashboard
+                        </a>
+                    </li>
 
+                    <li class="nav-item">
+                        <a class="nav-link @(currentController == "Students" ? "active" : "")" asp-action="Index" asp-controller="Students">
+                            Students
+                        </a>
+                    </li>
 
-	<div class="container-fluid bd-layout">
-		<section class="bd-main">
-			<main>
-				@RenderBody()
-			</main>
-		</section>
-	</div>
+                    <li class="nav-item">
+                        <a class="nav-link @(currentController == "Course" ? "active" : "")" href="/Course">
+                            Courses
+                        </a>
+                    </li>
 
-	<!--============================
-	=            footer            =
-	=============================-->
-	<footer>
-		
-	</footer>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-	<!-- scripts -->
+    <!-- MAIN -->
+    <main class="main-content flex-fill container">
+        @RenderBody()
+    </main>
 
-	<script type="text/javascript">
-		
-	</script>
-	@RenderSection("Scripts", required: false)
+    <!-- FOOTER -->
+    <footer class="mt-auto py-3">
+        <div class="container d-flex justify-content-between align-items-center">
+            <span>© @DateTime.Now.Year <strong>School Management System</strong></span>
+            <span>Built with ASP.NET Core</span>
+        </div>
+    </footer>
+
+    <!-- JS -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="~/js/main.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+                
+        });
+    </script>
+
+    @RenderSection("Scripts", required: false)
+
 </body>
 </html>

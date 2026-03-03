@@ -1,16 +1,12 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Microsoft.IdentityModel.Tokens;
 using SchoolManagement.DataAccess.DataContext;
-using SchoolManagement.DataAccess.Repositories;
+using SchoolManagement.DataAccess.Repositories.Auth;
 using SchoolManagement.DataAccess.UnitOfWork;
 using SchoolManagement.Domain.Entities.Authentication;
 using SchoolManagement.Domain.Interfaces.AuthenticationAndAuthorization;
-using SchoolManagement.Domain.Interfaces.CommonRepositories;
-using SchoolManagement.Infrastructure.Services.CommonServices;
 using SchoolManagement.Infrastructure.Services.Dapper;
+using SchoolManagement.Utility.Validators;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -41,6 +37,9 @@ builder.Services.AddIdentity<ApplicationUsers, IdentityRole>(options =>
 .AddEntityFrameworkStores<ApplicationDbContext>()
 .AddDefaultTokenProviders();
 
+// Register validation services - FIXED
+builder.Services.ApplicationEntityValidation();
+
 // Configure cookie settings
 builder.Services.ConfigureApplicationCookie(options =>
 {
@@ -60,17 +59,19 @@ builder.Services.AddAuthentication()
         options.ClientId = builder.Configuration["Authentication:Google:ClientId"] ?? "";
         options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"] ?? "";
     });
+
+// Register other services
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IAuthenticationRepository, AuthenticationRepository>();
 builder.Services.AddScoped<IDapperService, DappeService>();
 builder.Services.AddAuthorization();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
@@ -80,7 +81,6 @@ app.MapStaticAssets();
 
 app.UseRouting();
 
-// Add Authentication and Authorization Middleware
 app.UseAuthentication();
 app.UseAuthorization();
 

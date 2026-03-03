@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SchoolManagement.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -40,11 +41,6 @@ namespace SchoolManagement.Domain.Interfaces.CommonRepositories
 
         Task AddRangeAsync(IEnumerable<T> entities, CancellationToken cancellationToken = default);
 
-        // UPDATE operations
-        void Update(T entity);
-
-        void UpdateRange(IEnumerable<T> entities);
-
         // DELETE operations
         void Remove(T entity);
 
@@ -66,8 +62,11 @@ namespace SchoolManagement.Domain.Interfaces.CommonRepositories
 
         Task<IEnumerable<T>> GetAllAsync();
 
-        Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate);
+        Task<T?> FindSingleAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default);
 
-        Task<T?> FindSingleAsync(Expression<Func<T, bool>> predicate);
+        // UPDATE operations
+        void Update(T entity);
+
+        void UpdateRange(IEnumerable<T> entities);
     }
 }

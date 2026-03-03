@@ -2,14 +2,13 @@
 using SchoolManagement.DataAccess.DataContext;
 using SchoolManagement.Domain.Entities.AuthenticationAndAuthorization;
 using SchoolManagement.Domain.Interfaces.AuthenticationAndAuthorization;
-using SchoolManagement.Infrastructure.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SchoolManagement.DataAccess.Repositories
+namespace SchoolManagement.DataAccess.Repositories.Auth
 {
     public class RefreshTokenRepository : GenericRepository<RefreshToken>, IRefreshTokenRepository
     {
